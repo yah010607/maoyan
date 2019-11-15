@@ -5,8 +5,11 @@ let reduces = (state = { list: list, obj: {}, arr: [], page: 1, pageNum: 5 }, ac
     let newstate = { ...state, arr: [...state.arr], list: [...state.list] }
 
     switch (action.type) {
+        //跳详情
         case 'XQ': newstate.obj = newstate.list.find(item => item.id == action.id)
             return newstate
+            
+        //模糊搜索
         case 'SOUSUO': {
             if (action.val) {
                 newstate.arr = newstate.list.filter(item => item.nm.includes(action.val))
@@ -15,6 +18,8 @@ let reduces = (state = { list: list, obj: {}, arr: [], page: 1, pageNum: 5 }, ac
             }
             return newstate
         }
+
+        //上拉加载时，加载的数据   用截取的方法返回数据
         case 'GET_LIST': {
             if (newstate.page < 4) {
                 let start = (newstate.page - 1) * newstate.pageNum

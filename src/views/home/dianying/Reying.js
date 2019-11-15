@@ -25,6 +25,7 @@ class Reying extends Component {
             </div>
         );
     }
+    //下拉刷新
     pullDownFreshAction = () => {
         return new Promise((resolve) => {
             this.timer = setTimeout(() => {
@@ -36,7 +37,7 @@ class Reying extends Component {
             }, 1000)
         })
     }
-
+    //上拉加载
     loadMoreData = () => {
         // 更新数据
         return new Promise(resolve => {
